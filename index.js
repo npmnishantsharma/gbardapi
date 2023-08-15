@@ -6,14 +6,16 @@ const { GoogleAuth } = require("google-auth-library");
 const client = new DiscussServiceClient({
     authClient: new GoogleAuth().fromAPIKey("AIzaSyBbvBq4Ha6ZeKKjvxvnqzGKqcGXmdRQ6T8"),
   });
-app.get("/?q=:question",async (req,res) =>{
+app.get("/",async (req,res) =>{
   const {question} = req.params;
+  const headers = req.headers;
+  console.log(headers['text'])
   try {
     const result = await client.generateMessage({
       model: "models/chat-bison-001",
       prompt: {
         context: "Respond to all questions using image",
-        messages: [{ content: `${question}` }],
+        messages: [{ content: `${headers['text']}` }],
       },
     });
 
