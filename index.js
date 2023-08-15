@@ -6,7 +6,7 @@ const { GoogleAuth } = require("google-auth-library");
 const client = new DiscussServiceClient({
     authClient: new GoogleAuth().fromAPIKey("AIzaSyBbvBq4Ha6ZeKKjvxvnqzGKqcGXmdRQ6T8"),
   });
-app.get("/:question",async (req,res) =>{
+app.get("/?q=:question",async (req,res) =>{
   const {question} = req.params;
   try {
     const result = await client.generateMessage({
