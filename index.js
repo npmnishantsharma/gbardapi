@@ -21,13 +21,22 @@ app.get("/",async (req,res) =>{
     const responseContent = result[0].candidates[0].content;
     if (responseContent.startsWith("[") && responseContent.endsWith("]")) {
       // Remove [ ] and get the first data
-      const searchData = responseContent.substring(1, responseContent.length - 1);
-      const searchDataArray = JSON.parse(searchData);
-      const firstData = searchDataArray[0];
+      console.log(query)  
+  const apiKey = 'AIzaSyAYK7xIpUm5QWueWH9Jd8cUlCwWFrUt2sc'; // Replace with your API key
+  const searchUrl = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=d463665a7ac074f14&q=${query}&searchType=image`;
+
+  try {
+    const response = await axios.get(searchUrl);
+    const imageResults = response.data.items.map(item => item.link);
+    res.status(201).json({ response: imageResults[0]});
+  } catch (error) {
+    console.error('Error fetching images:', error);
+    res.status(500).json({ error: 'An error occurred while fetching images.' });
+  }
       
       // You can use the 'firstData' here for further processing or searching
       // For now, I'll just send it as a JSON response
-      res.status(201).json({ response: firstData });
+      
     } else {
       res.status(201).json({ response: responseContent });
     }
