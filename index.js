@@ -18,9 +18,18 @@ app.get("/",async (req,res) =>{
         messages: [{ content: `${headers['text']}` }],
       },
     });
-
-    console.log(result[0]);
-    res.status(201).json({ response: `${result[0].candidates[0].content}` })
+    if (responseContent.startsWith("[") && responseContent.endsWith("]")) {
+      // Remove [ ] and get the first data
+      const searchData = responseContent.substring(1, responseContent.length - 1);
+      const searchDataArray = JSON.parse(searchData);
+      const firstData = searchDataArray[0];
+      
+      // You can use the 'firstData' here for further processing or searching
+      // For now, I'll just send it as a JSON response
+      res.status(201).json({ response: firstData });
+    } else {
+      res.status(201).json({ response: responseContent });
+    }
   } catch (error) {
     console.error("Error generating message:", error);
   }
