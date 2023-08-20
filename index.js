@@ -20,8 +20,7 @@ app.get("/",async (req,res) =>{
     });
     const responseContent = result[0].candidates[0].content;
     if (responseContent.startsWith("[") && responseContent.endsWith("]")) {
-      // Remove [ ] and get the first data
-      console.log(query)  
+      
   const apiKey = 'AIzaSyAYK7xIpUm5QWueWH9Jd8cUlCwWFrUt2sc'; // Replace with your API key
   const searchUrl = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=d463665a7ac074f14&q=${query}&searchType=image`;
 
