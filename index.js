@@ -18,6 +18,7 @@ app.get("/",async (req,res) =>{
         messages: [{ content: `${headers['text']}` }],
       },
     });
+    const responseContent = result[0].candidates[0].content;
     if (responseContent.startsWith("[") && responseContent.endsWith("]")) {
       // Remove [ ] and get the first data
       const searchData = responseContent.substring(1, responseContent.length - 1);
