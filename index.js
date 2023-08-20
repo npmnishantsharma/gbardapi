@@ -22,7 +22,7 @@ app.get("/",async (req,res) =>{
     if (responseContent.startsWith("[") && responseContent.endsWith("]")) {
       
   const apiKey = 'AIzaSyAYK7xIpUm5QWueWH9Jd8cUlCwWFrUt2sc'; // Replace with your API key
-  const searchUrl = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=d463665a7ac074f14&q=${query}&searchType=image`;
+  const searchUrl = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=d463665a7ac074f14&q=${responseContent}&searchType=image`;
 
   try {
     const response = await axios.get(searchUrl);
