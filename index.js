@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 
         context: "Respond to all questions in a paragraph. ",
 
-        messages: [{ content: `${headers['text']} || hi` }],
+        messages: [{ content: `${headers['text']}` }],
 
       },
 
