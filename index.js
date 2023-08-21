@@ -28,6 +28,11 @@ app.get('/', async (req, res) => {
 
     const responseContent = result[0].candidates[0].content;
     res.json({ response: `${responseContent}` });
+    }catch (error) {
+        res.json({ response: `Sometimes something gets wrong!` });
+    console.error("Error generating message:", error);
+
+  }
 });
 
 app.listen(port, () => {
