@@ -11,6 +11,7 @@ const client = new DiscussServiceClient({
   });
 app.get('/', async (req, res) => {
     const headers = req.headers;
+    if(headers['text'] == null) return;
     try {
     const result = await client.generateMessage({
 
