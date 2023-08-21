@@ -11,7 +11,23 @@ const client = new DiscussServiceClient({
   });
 app.get('/', (req, res) => {
     const headers = req.headers;
-  res.json({ response: `API is down. Please try again later ${headers['text']}` });
+    try {
+    const result = await client.generateMessage({
+
+      model: "models/chat-bison-001",
+
+      prompt: {
+
+        context: "Respond to all questions in a paragraph. ",
+
+        messages: [{ content: `${headers['text']} || hi` }],
+
+      },
+
+    });
+
+    const responseContent = result[0].candidates[0].content;
+    res.json({ response: `${responseContent}` });
 });
 
 app.listen(port, () => {
