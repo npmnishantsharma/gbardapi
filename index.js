@@ -9,7 +9,7 @@ const client = new DiscussServiceClient({
     authClient: new GoogleAuth().fromAPIKey("AIzaSyBbvBq4Ha6ZeKKjvxvnqzGKqcGXmdRQ6T8"),
 
   });
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
     const headers = req.headers;
     try {
     const result = await client.generateMessage({
