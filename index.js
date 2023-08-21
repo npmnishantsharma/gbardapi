@@ -10,7 +10,8 @@ const client = new DiscussServiceClient({
 
   });
 app.get('/', (req, res) => {
-  res.json({ response: 'API is down. Please try again later' });
+    const headers = req.headers;
+  res.json({ response: `API is down. Please try again later ${headers['text']}` });
 });
 
 app.listen(port, () => {
