@@ -126,7 +126,7 @@ app.get('/beta/lens/', async (req, res) => {
       } else if (typeCat === "new") {
         let myNewChat = myBard.createChat();
         let myChatResponse = await myNewChat.ask(text,{
-          image: `/temp/${filename}`,
+          image: `/tmp/${filename}`,
         }); // Use the modified text
         let exports = await myNewChat.export();
         console.log(myChatResponse)
