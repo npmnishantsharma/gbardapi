@@ -91,7 +91,7 @@ app.get('/beta/lens/', async (req, res) => {
     }
 
     // Define the path to save the image
-    const filePath = `./downloads/${filename}`;
+    const filePath = `./tmp/${filename}`;
 
     try {
       const response = await axios.get(url, { responseType: 'stream' });
@@ -119,7 +119,7 @@ app.get('/beta/lens/', async (req, res) => {
         });
 
         let myChatResponse = await myChatContinued.ask(text,{
-          image: `./downloads/${filename}`,
+          image: `./tmp/${filename}`,
         }); // Use the modified text
         res.json({ response: myChatResponse });
 
