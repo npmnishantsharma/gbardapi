@@ -2,6 +2,7 @@ import express from 'express';
 import translate from 'translate-google';
 import axios from 'axios';
 import fs from 'fs';
+import * as path from 'path';
 import Bard from 'bard-ai';
 const app = express();
 const port = process.env.PORT || 3000;
